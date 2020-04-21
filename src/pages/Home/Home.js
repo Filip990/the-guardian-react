@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { API_KEY } from "../../constants";
+import { useDispatch, useSelector } from "react-redux";
+
+import { newsFeedRequest } from "./store/Actions";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 
-const Home = (props) => {
-  const [newsFeed, setNewsFeed] = useState([]);
+const Home = () => {
+  const newsFeed = useSelector((state) => state.news);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          `https://content.guardianapis.com/search?show-fields=headline,body,thumbnail&show-tags=keyword&show-blocks=body&show-elements=all&api-key=${API_KEY}`
-        );
-        const json = await res.json();
-        setNewsFeed(json.response.results);
-      } catch (error) {}
-    };
+    dispatch(newsFeedRequest());
+  }, [dispatch]);
 
-    fetchData();
-  }, []);
-  console.log(newsFeed);
   return (
     <Container>
       <Row>
-        {newsFeed.map((item) => (
-          <Col key={item.id}>
-            <NewsCard {...item} />
-          </Col>
-        ))}
+        {newsFeed &&
+          newsFeed.map((item) => (
+            <Col key={item.id}>
+              <NewsCard article={item} />
+            </Col>
+          ))}
       </Row>
     </Container>
   );
