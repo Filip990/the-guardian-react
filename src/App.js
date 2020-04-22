@@ -9,6 +9,7 @@ import { watchFeedSaga } from "./pages/Home/store/sagas";
 import "./App.css";
 
 import Home from "./pages/Home/Home";
+import Article from "./pages/Article/Article";
 
 function App() {
   const sagaMiddleware = createSagaMiddleware();
@@ -21,6 +22,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/:id" component={Article} />
           </Switch>
         </Router>
       </Provider>
