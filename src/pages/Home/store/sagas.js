@@ -13,7 +13,7 @@ export function* watchFeedSaga() {
 const fetchNewsFeed = async () => {
   try {
     const res = await fetch(
-      `https://content.guardianapis.com/search?show-fields=headline,body,thumbnail&show-tags=keyword&show-blocks=body&show-elements=all&api-key=${API_KEY}`
+      `https://content.guardianapis.com/search?show-fields=headline,trailText,body,thumbnail&show-tags=keyword&show-blocks=body&show-elements=all&api-key=${API_KEY}`
     );
     const json = await res.json();
     return json;
