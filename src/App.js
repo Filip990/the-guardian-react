@@ -10,7 +10,7 @@ import "./App.css";
 
 import Home from "./pages/Home/Home";
 import Article from "./pages/Article/Article";
-
+import Header from "./components/Header/Header";
 function App() {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(newsFeedReducer, applyMiddleware(sagaMiddleware));
@@ -19,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
+        <Header />
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
