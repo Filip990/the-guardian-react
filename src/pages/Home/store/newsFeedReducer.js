@@ -19,11 +19,11 @@ const newsFeedReducer = (state = initialState, action) => {
         draft.isLoading = true;
         break;
       case NEWS_FEED_REQUEST_SUCCESS:
-        draft.news = action.data.results;
+        draft.news = action.sections;
         draft.isLoading = false;
         break;
       case NEWS_FEED_REQUEST_FAILURE:
-        draft.error = action.data.error;
+        draft.error = action.error;
         draft.isLoading = false;
         break;
 

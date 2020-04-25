@@ -16,6 +16,7 @@ function App() {
   const store = createStore(newsFeedReducer, applyMiddleware(sagaMiddleware));
 
   sagaMiddleware.run(watchFeedSaga);
+
   return (
     <div className="App">
       <Provider store={store}>
