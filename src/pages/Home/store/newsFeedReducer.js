@@ -7,7 +7,7 @@ import produce from "immer";
 
 const initialState = {
   news: [],
-  isLoading: false,
+  isLoading: true,
   pageIndex: null,
   error: null,
 };
