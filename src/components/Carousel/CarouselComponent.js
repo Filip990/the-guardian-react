@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const CarouselComponent = (props) => {
   const { carouselItems } = props;
-  console.log(carouselItems);
 
   return (
     <StyledCarousel>

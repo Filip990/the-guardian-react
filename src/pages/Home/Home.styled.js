@@ -12,4 +12,9 @@ export const SectionHeader = styled.h3`
   width: 100%;
   text-align: initial;
   font-style: oblique;
+  background: #88c8e4;
+  color: white;
+  font-weight: 600;
+  padding: 8px 8px 0;
+  border-bottom: 12px solid #007bff;
 `;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, CardColumns } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { newsFeedRequest } from "./store/Actions";
@@ -10,57 +10,69 @@ import CarouselComponent from "../../components/Carousel/CarouselComponent";
 import { CarouselContainer, SectionHeader } from "./Home.styled";
 
 const Home = () => {
-  const { latest, lifestyle, business, world, culture } = useSelector(
+  const [latest, lifeandstyle, business, world, culture] = useSelector(
     (state) => state.news
-    );
-    const dispatch = useDispatch();
+  );
+  const { isLoading } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(newsFeedRequest());
   }, [dispatch]);
-  console.log(lifestyle);
-  return (
+
+  return isLoading ? (
+    <Container>
+      <Spinner animation="border" size="lg" />
+    </Container>
+  ) : (
     <Container>
       <Row>
         {latest && (
           <CarouselContainer>
-            <SectionHeader>Latest News: </SectionHeader>
+            <SectionHeader>Latest News </SectionHeader>
             <CarouselComponent carouselItems={latest} />
           </CarouselContainer>
         )}
 
-        <SectionHeader>Lifestyle: </SectionHeader>
+        <SectionHeader>Business </SectionHeader>
         <Row>
-          <CardColumns>
-            {lifestyle &&
-              lifestyle.map((item) => (
-                <NewsCard key={item.id} article={item} />
-              ))}
-          </CardColumns>
+          {business &&
+            business.map((item) => (
+              <Col key={item.id}>
+                <NewsCard article={item} />
+              </Col>
+            ))}
         </Row>
 
-        <SectionHeader>Business: </SectionHeader>
+        <SectionHeader>World News </SectionHeader>
         <Row>
-          <CardColumns>
-            {business &&
-              business.map((item) => <NewsCard key={item.id} article={item} />)}
-          </CardColumns>
+          {world &&
+            world.map((item) => (
+              <Col key={item.id}>
+                <NewsCard article={item} />
+              </Col>
+            ))}
         </Row>
 
-        <SectionHeader>World News: </SectionHeader>
+        <SectionHeader>Culture </SectionHeader>
         <Row>
-          <CardColumns>
-            {world &&
-              world.map((item) => <NewsCard key={item.id} article={item} />)}
-          </CardColumns>
+          {culture &&
+            culture.map((item) => (
+              <Col key={item.id}>
+                <NewsCard article={item} />
+              </Col>
+            ))}
         </Row>
 
-        <SectionHeader>Culture: </SectionHeader>
+        <SectionHeader>Lifestyle </SectionHeader>
         <Row>
-          <CardColumns>
-            {culture &&
-              culture.map((item) => <NewsCard key={item.id} article={item} />)}
-          </CardColumns>
+          {lifeandstyle &&
+            lifeandstyle.map((item) => (
+              <Col key={item.id}>
+                <NewsCard article={item} />
+              </Col>
+            ))}
         </Row>
       </Row>
     </Container>
