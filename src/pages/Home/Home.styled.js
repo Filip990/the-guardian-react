@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export const CarouselContainer = styled(Row)`
   width: 100%;
@@ -8,7 +9,8 @@ export const CarouselContainer = styled(Row)`
 `;
 
 export const SectionHeader = styled.h3`
-  display: block;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   text-align: initial;
   font-style: oblique;
@@ -17,4 +19,10 @@ export const SectionHeader = styled.h3`
   font-weight: 600;
   padding: 8px 8px 0;
   border-bottom: 12px solid #007bff;
+`;
+
+export const HeaderLink = styled(Link)`
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
 `;

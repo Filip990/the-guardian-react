@@ -11,6 +11,7 @@ import "./App.css";
 import Home from "./pages/Home/Home";
 import Article from "./pages/Article/Article";
 import Header from "./components/Header/Header";
+import Section from "./pages/Section/Section";
 function App() {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(newsFeedReducer, applyMiddleware(sagaMiddleware));
@@ -24,6 +25,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/section/:section" component={Section} />
             <Route path="/:id" component={Article} />
           </Switch>
         </Router>

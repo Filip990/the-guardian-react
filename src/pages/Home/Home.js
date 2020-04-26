@@ -7,7 +7,7 @@ import { newsFeedRequest } from "./store/Actions";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import CarouselComponent from "../../components/Carousel/CarouselComponent";
 
-import { CarouselContainer, SectionHeader } from "./Home.styled";
+import { CarouselContainer, SectionHeader, HeaderLink } from "./Home.styled";
 
 const Home = () => {
   const [latest, lifeandstyle, business, world, culture] = useSelector(
@@ -30,12 +30,18 @@ const Home = () => {
       <Row>
         {latest && (
           <CarouselContainer>
-            <SectionHeader>Latest News </SectionHeader>
+            <SectionHeader>
+              Latest News
+              <HeaderLink to="section/search">see all</HeaderLink>
+            </SectionHeader>
             <CarouselComponent carouselItems={latest} />
           </CarouselContainer>
         )}
 
-        <SectionHeader>Business </SectionHeader>
+        <SectionHeader>
+          Business
+          <HeaderLink to="section/business">see all </HeaderLink>
+        </SectionHeader>
         <Row>
           {business &&
             business.map((item) => (
@@ -45,7 +51,10 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>World News </SectionHeader>
+        <SectionHeader>
+          World News
+          <HeaderLink to="section/world">see all</HeaderLink>
+        </SectionHeader>
         <Row>
           {world &&
             world.map((item) => (
@@ -55,7 +64,10 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>Culture </SectionHeader>
+        <SectionHeader>
+          Culture
+          <HeaderLink to="section/culture">see all</HeaderLink>
+        </SectionHeader>
         <Row>
           {culture &&
             culture.map((item) => (
@@ -65,7 +77,10 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>Lifestyle </SectionHeader>
+        <SectionHeader>
+          Lifestyle
+          <HeaderLink to="section/lifeandstyle">see all</HeaderLink>
+        </SectionHeader>
         <Row>
           {lifeandstyle &&
             lifeandstyle.map((item) => (

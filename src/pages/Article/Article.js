@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 import { API_KEY } from "../../constants";
@@ -23,7 +23,6 @@ const Article = (props) => {
 
     fetchArticleDetails();
   }, [pathname]);
-  console.log(articleDetails);
 
   return (
     <Container>
