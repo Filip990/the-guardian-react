@@ -10,10 +10,9 @@ import CarouselComponent from "../../components/Carousel/CarouselComponent";
 import { CarouselContainer, SectionHeader } from "./Home.styled";
 
 const Home = () => {
-  const { latest, lifestyle, business, world, culture } = useSelector(
+  const [latest, lifeandstyle, business, world, culture] = useSelector(
     (state) => state.news
   );
-
   const { isLoading } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -38,14 +37,13 @@ const Home = () => {
 
         <SectionHeader>Lifestyle </SectionHeader>
         <Row>
-          {lifestyle &&
-            lifestyle.map((item) => (
+          {lifeandstyle &&
+            lifeandstyle.map((item) => (
               <Col key={item.id}>
                 <NewsCard article={item} />
               </Col>
             ))}
         </Row>
-
         <SectionHeader>Business </SectionHeader>
         <Row>
           {business &&
@@ -55,7 +53,6 @@ const Home = () => {
               </Col>
             ))}
         </Row>
-
         <SectionHeader>World News </SectionHeader>
         <Row>
           {world &&
@@ -65,7 +62,6 @@ const Home = () => {
               </Col>
             ))}
         </Row>
-
         <SectionHeader>Culture </SectionHeader>
         <Row>
           {culture &&
