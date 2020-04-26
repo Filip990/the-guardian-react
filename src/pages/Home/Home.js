@@ -35,15 +35,6 @@ const Home = () => {
           </CarouselContainer>
         )}
 
-        <SectionHeader>Lifestyle </SectionHeader>
-        <Row>
-          {lifeandstyle &&
-            lifeandstyle.map((item) => (
-              <Col key={item.id}>
-                <NewsCard article={item} />
-              </Col>
-            ))}
-        </Row>
         <SectionHeader>Business </SectionHeader>
         <Row>
           {business &&
@@ -53,6 +44,7 @@ const Home = () => {
               </Col>
             ))}
         </Row>
+
         <SectionHeader>World News </SectionHeader>
         <Row>
           {world &&
@@ -62,10 +54,21 @@ const Home = () => {
               </Col>
             ))}
         </Row>
+
         <SectionHeader>Culture </SectionHeader>
         <Row>
           {culture &&
             culture.map((item) => (
+              <Col key={item.id}>
+                <NewsCard article={item} />
+              </Col>
+            ))}
+        </Row>
+
+        <SectionHeader>Lifestyle </SectionHeader>
+        <Row>
+          {lifeandstyle &&
+            lifeandstyle.map((item) => (
               <Col key={item.id}>
                 <NewsCard article={item} />
               </Col>
