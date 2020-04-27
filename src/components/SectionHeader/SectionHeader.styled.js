@@ -5,6 +5,7 @@ export const StyledHeader = styled.h3`
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
+  margin-top: 2%;
   width: 100%;
   text-align: initial;
   font-style: oblique;

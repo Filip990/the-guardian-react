@@ -3,6 +3,6 @@ import { Row } from "react-bootstrap";
 
 export const CarouselContainer = styled(Row)`
   width: 100%;
-  margin: 2% auto 2%;
+  margin: auto;
   font-style: oblique;
 `;
