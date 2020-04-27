@@ -21,8 +21,8 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <Header />
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/section/:section" component={SectionDetails} />
