@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { newsFeedRequest } from "./store/Actions";
@@ -7,6 +7,7 @@ import { newsFeedRequest } from "./store/Actions";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import CarouselComponent from "../../components/Carousel/CarouselComponent";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
+import Spinner from "../../components/Spinner/Spinner";
 
 import { CarouselContainer } from "./Home.styled";
 
