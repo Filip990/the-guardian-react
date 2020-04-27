@@ -6,8 +6,9 @@ import { newsFeedRequest } from "./store/Actions";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import CarouselComponent from "../../components/Carousel/CarouselComponent";
+import SectionHeader from "../../components/SectionHeader/SectionHeader";
 
-import { CarouselContainer, SectionHeader } from "./Home.styled";
+import { CarouselContainer } from "./Home.styled";
 
 const Home = () => {
   const [latest, lifeandstyle, business, world, culture] = useSelector(
@@ -30,12 +31,12 @@ const Home = () => {
       <Row>
         {latest && (
           <CarouselContainer>
-            <SectionHeader>Latest News </SectionHeader>
+            <SectionHeader link="section/search">Latest News</SectionHeader>
             <CarouselComponent carouselItems={latest} />
           </CarouselContainer>
         )}
 
-        <SectionHeader>Business </SectionHeader>
+        <SectionHeader link="section/business">Business</SectionHeader>
         <Row>
           {business &&
             business.map((item) => (
@@ -45,7 +46,7 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>World News </SectionHeader>
+        <SectionHeader link="section/world">World News</SectionHeader>
         <Row>
           {world &&
             world.map((item) => (
@@ -55,7 +56,7 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>Culture </SectionHeader>
+        <SectionHeader link="section/culture">Culture</SectionHeader>
         <Row>
           {culture &&
             culture.map((item) => (
@@ -65,7 +66,7 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>Lifestyle </SectionHeader>
+        <SectionHeader link="section/lifeandstyle">Lifestyle</SectionHeader>
         <Row>
           {lifeandstyle &&
             lifeandstyle.map((item) => (

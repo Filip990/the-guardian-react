@@ -9,7 +9,7 @@ const NewsCard = (props) => (
     <Card.Body>
       <Card.Title>{props.article.webTitle}</Card.Title>
       <Button variant="primary">
-        <CardLink to={`${props.article.id}`}>Read more</CardLink>
+        <CardLink to={`/${props.article.id}`}>Read more</CardLink>
       </Button>
     </Card.Body>
   </CardItem>

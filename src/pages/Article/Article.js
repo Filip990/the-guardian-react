@@ -23,7 +23,6 @@ const Article = (props) => {
 
     fetchArticleDetails();
   }, [pathname]);
-  console.log(articleDetails);
 
   return (
     <Container>
@@ -31,6 +30,8 @@ const Article = (props) => {
         <Col>
           <h1>{articleDetails?.webTitle}</h1>
           <Image src={articleDetails?.fields?.thumbnail} />
+          {/*dangerouslySetInnerHTML is the only sensible thing to use here since the text
+           returned from the API contains a lot of HTML and depends on it heavily   */}
           <div
             dangerouslySetInnerHTML={{
               __html: articleDetails?.fields?.body,
