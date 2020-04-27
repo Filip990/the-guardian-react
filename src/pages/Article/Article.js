@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 import { API_KEY } from "../../constants";
@@ -30,6 +30,8 @@ const Article = (props) => {
         <Col>
           <h1>{articleDetails?.webTitle}</h1>
           <Image src={articleDetails?.fields?.thumbnail} />
+          {/*dangerouslySetInnerHTML is the only sensible thing to use here since the text
+           returned from the API contains a lot of HTML and depends on it heavily   */}
           <div
             dangerouslySetInnerHTML={{
               __html: articleDetails?.fields?.body,

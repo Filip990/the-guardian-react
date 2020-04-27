@@ -14,4 +14,9 @@ export const CardImage = styled(Card.Img)`
 
 export const CardLink = styled(Link)`
   color: white;
+
+  :hover {
+    color: white;
+    text-decoration: none;
+  }
 `;

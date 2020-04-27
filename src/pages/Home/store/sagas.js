@@ -9,10 +9,10 @@ import { API_KEY } from "../../../constants";
 const sections = ["search", "lifeandstyle", "business", "world", "culture"];
 
 export function* watchFeedSaga() {
-  yield takeLatest(NEWS_FEED_REQUEST_START, fetchBySection);
+  yield takeLatest(NEWS_FEED_REQUEST_START, fetchBySectionSaga);
 }
 
-const fetchSections = async (section) => {
+const fetchNewsBySections = async (section) => {
   const res = await fetch(
     `https://content.guardianapis.com/${section}?show-fields=headline,trailText,body,thumbnail&page-size=6&api-key=${API_KEY}`
   );
@@ -20,13 +20,13 @@ const fetchSections = async (section) => {
   return json.response.results;
 };
 
-const sectionsSaga = () => {
-  return Promise.all(sections.map((sec) => fetchSections(sec)));
+const getSections = () => {
+  return Promise.all(sections.map((sec) => fetchNewsBySections(sec)));
 };
 
-function* fetchBySection() {
+function* fetchBySectionSaga() {
   try {
-    const sections = yield call(sectionsSaga);
+    const sections = yield call(getSections);
     yield put({ type: NEWS_FEED_REQUEST_SUCCESS, sections });
   } catch (error) {
     yield put({ type: NEWS_FEED_REQUEST_FAILURE, error });

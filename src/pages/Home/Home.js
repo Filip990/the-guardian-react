@@ -6,8 +6,9 @@ import { newsFeedRequest } from "./store/Actions";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import CarouselComponent from "../../components/Carousel/CarouselComponent";
+import SectionHeader from "../../components/SectionHeader/SectionHeader";
 
-import { CarouselContainer, SectionHeader, HeaderLink } from "./Home.styled";
+import { CarouselContainer } from "./Home.styled";
 
 const Home = () => {
   const [latest, lifeandstyle, business, world, culture] = useSelector(
@@ -30,18 +31,12 @@ const Home = () => {
       <Row>
         {latest && (
           <CarouselContainer>
-            <SectionHeader>
-              Latest News
-              <HeaderLink to="section/search">see all</HeaderLink>
-            </SectionHeader>
+            <SectionHeader link="section/search">Latest News</SectionHeader>
             <CarouselComponent carouselItems={latest} />
           </CarouselContainer>
         )}
 
-        <SectionHeader>
-          Business
-          <HeaderLink to="section/business">see all </HeaderLink>
-        </SectionHeader>
+        <SectionHeader link="section/business">Business</SectionHeader>
         <Row>
           {business &&
             business.map((item) => (
@@ -51,10 +46,7 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>
-          World News
-          <HeaderLink to="section/world">see all</HeaderLink>
-        </SectionHeader>
+        <SectionHeader link="section/world">World News</SectionHeader>
         <Row>
           {world &&
             world.map((item) => (
@@ -64,10 +56,7 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>
-          Culture
-          <HeaderLink to="section/culture">see all</HeaderLink>
-        </SectionHeader>
+        <SectionHeader link="section/culture">Culture</SectionHeader>
         <Row>
           {culture &&
             culture.map((item) => (
@@ -77,10 +66,7 @@ const Home = () => {
             ))}
         </Row>
 
-        <SectionHeader>
-          Lifestyle
-          <HeaderLink to="section/lifeandstyle">see all</HeaderLink>
-        </SectionHeader>
+        <SectionHeader link="section/lifeandstyle">Lifestyle</SectionHeader>
         <Row>
           {lifeandstyle &&
             lifeandstyle.map((item) => (

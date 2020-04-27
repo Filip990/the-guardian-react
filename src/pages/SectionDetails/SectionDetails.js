@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { API_KEY } from "../../constants";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
+import SectionHeader from "../../components/SectionHeader/SectionHeader";
 
-const Section = (props) => {
+import { API_KEY } from "../../constants";
+
+const SectionDetails = (props) => {
   const { section } = useParams();
   const [news, setNews] = useState([]);
 
@@ -20,10 +22,10 @@ const Section = (props) => {
 
     fetchSections(section);
   }, [section]);
-  console.log(news);
+
   return (
     <Container>
-      <h1>{section.toUpperCase()}</h1>
+      <SectionHeader> {section}</SectionHeader>
       <Row>
         {news &&
           news.map((item) => (
@@ -36,4 +38,4 @@ const Section = (props) => {
   );
 };
 
-export default Section;
+export default SectionDetails;
