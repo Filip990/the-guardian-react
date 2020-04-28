@@ -1,14 +1,27 @@
-import React from "react";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
 
 const Header = (props) => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+    <Navbar
+      expanded={expanded}
+      bg="dark"
+      variant="dark"
+      expand="lg"
+      sticky="top"
+    >
       <Navbar.Brand>TheGuardian</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        onClick={() =>
+          setExpanded((prevExpanded) => (prevExpanded = !prevExpanded))
+        }
+      />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="mr-auto" onClick={() => setExpanded(false)}>
           <HeaderLink exact to="/">
             Home
           </HeaderLink>
@@ -16,11 +29,8 @@ const Header = (props) => {
           <HeaderLink to="/section/world">World News</HeaderLink>
           <HeaderLink to="/section/culture">Culture</HeaderLink>
           <HeaderLink to="/section/lifeandstyle">Lifestyle</HeaderLink>
+          <HeaderLink to="/search">Search</HeaderLink>
         </Nav>
-        <Form inline>
-          <FormControl type="search" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
       </Navbar.Collapse>
     </Navbar>
   );
