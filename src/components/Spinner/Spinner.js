@@ -1,8 +1,8 @@
 import React from "react";
 import { Rotate } from "./Spinner.styled";
 
-const Spinner = () => {
+const LargeSpinner = () => {
   return <Rotate></Rotate>;
 };
 
-export default Spinner;
+export default LargeSpinner;
