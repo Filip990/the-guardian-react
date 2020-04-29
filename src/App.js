@@ -1,22 +1,31 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
-import { watchFeedSaga } from "./pages/Home/store/sagas";
+import searchReducer from "./pages/Search/store/searchReducer";
+import sagas from "./store/sagas";
 import "./App.css";
 
 import Home from "./pages/Home/Home";
 import Article from "./pages/Article/Article";
 import Header from "./components/Header/Header";
 import SectionDetails from "./pages/SectionDetails/SectionDetails";
+import Search from "./pages/Search/Search";
+
 function App() {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(newsFeedReducer, applyMiddleware(sagaMiddleware));
+  const store = createStore(
+    combineReducers({
+      newsFeed: newsFeedReducer,
+      searchResults: searchReducer,
+    }),
+    applyMiddleware(sagaMiddleware)
+  );
 
-  sagaMiddleware.run(watchFeedSaga);
+  sagaMiddleware.run(sagas);
 
   return (
     <div className="App">
@@ -25,6 +34,7 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/search" component={Search} />
             <Route path="/section/:section" component={SectionDetails} />
             <Route path="/:id" component={Article} />
           </Switch>
