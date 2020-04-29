@@ -1,32 +1,29 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FormControl, Button, Container, Row, Col } from "react-bootstrap";
 
 import { SearchForm } from "./Search.styled";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import LargeSpinner from "../../components/Spinner/Spinner";
-import { API_KEY } from "../../constants";
+
+import { searchNewsRequest } from "./store/Actions";
 
 const Search = () => {
   const [inputVal, setInputVal] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { results, isLoading, error } = useSelector(
+    (state) => state.searchResults
+  );
 
   const updateInputVal = (event) => {
-    event.preventDefault();
     setInputVal(event.target.value);
   };
 
   const search = async (event) => {
-    event.preventDefault();
-    setIsLoading(true);
-    const res = await fetch(
-      `https://content.guardianapis.com/search?q=${inputVal}&show-fields=headline,trailText,body,thumbnail&page-size=30&order-by=newest&    api-key=${API_KEY}`
-    );
-    const json = await res.json();
-    setSearchResults(json.response.results);
-    setIsLoading(false);
+    dispatch(searchNewsRequest(inputVal));
   };
+
   return (
     <>
       <SearchForm
@@ -53,15 +50,18 @@ const Search = () => {
         {isLoading ? (
           <LargeSpinner />
         ) : (
-          <Row>
-            {searchResults &&
-              searchResults.map((item) => (
-                <Col key={item.id}>
-                  <NewsCard article={item} />
-                </Col>
-              ))}
-          </Row>
+          <>
+            <Row>
+              {results &&
+                results.map((item) => (
+                  <Col key={item.id}>
+                    <NewsCard article={item} />
+                  </Col>
+                ))}
+            </Row>
+          </>
         )}
+        {error && <div>{error.message}</div>}
       </Container>
     </>
   );

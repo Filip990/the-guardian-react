@@ -13,9 +13,9 @@ import { CarouselContainer } from "./Home.styled";
 
 const Home = () => {
   const [latest, lifeandstyle, business, world, culture] = useSelector(
-    (state) => state.news
+    (state) => state.newsFeed.news
   );
-  const { isLoading } = useSelector((state) => state);
+  const { isLoading } = useSelector((state) => state.newsFeed);
 
   const dispatch = useDispatch();
 
