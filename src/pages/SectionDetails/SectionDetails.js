@@ -67,7 +67,7 @@ const SectionDetails = (props) => {
 
   return (
     <Container>
-      <SectionHeader> {section}</SectionHeader>
+      <SectionHeader>{section === "search" ? "Latest" : section}</SectionHeader>
       <Row>
         {news &&
           news.map((item) => (

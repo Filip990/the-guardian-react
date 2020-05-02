@@ -17,7 +17,7 @@ const fetchNewsBySections = async (section) => {
     `https://content.guardianapis.com/${section}?show-fields=headline,trailText,body,thumbnail&page-size=6&api-key=${API_KEY}`
   );
   const json = await res.json();
-  return json.response.results;
+  return json.response;
 };
 
 const getSections = () => {
