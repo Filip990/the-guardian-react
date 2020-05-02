@@ -4,7 +4,7 @@ import { Card, Button } from "react-bootstrap";
 import { CardItem, CardImage, CardLink } from "./NewsCard.styled";
 
 const NewsCard = (props) => (
-  <CardItem className="text-center">
+  <CardItem>
     <CardImage variant="top" src={props?.article.fields?.thumbnail} />
     <Card.Body>
       <Card.Title>{props.article.webTitle}</Card.Title>

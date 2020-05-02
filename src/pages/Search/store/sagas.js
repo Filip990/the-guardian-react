@@ -12,7 +12,7 @@ export function* watchSearchSaga() {
 
 const getResults = async (inputVal) => {
   const res = await fetch(
-    `https://content.guardianapis.com/search?q=${inputVal}&show-fields=headline,trailText,body,thumbnail&page-size=30&order-by=newest&api-key=${API_KEY}`
+    `https://content.guardianapis.com/search?q="${inputVal}"&show-fields=headline,trailText,body,thumbnail&page-size=30&order-by=newest&api-key=${API_KEY}`
   );
   const json = await res.json();
   return json.response.results;

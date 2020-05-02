@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
 
-const Header = (props) => {
+const Header = () => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -25,6 +25,7 @@ const Header = (props) => {
           <HeaderLink exact to="/">
             Home
           </HeaderLink>
+          <HeaderLink to="/section/search">Latest</HeaderLink>
           <HeaderLink to="/section/business">Business</HeaderLink>
           <HeaderLink to="/section/world">World News</HeaderLink>
           <HeaderLink to="/section/culture">Culture</HeaderLink>
