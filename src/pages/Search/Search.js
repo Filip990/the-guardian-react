@@ -5,15 +5,19 @@ import { FormControl, Button, Container, Row, Col } from "react-bootstrap";
 import { SearchForm } from "./Search.styled";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
-import LargeSpinner from "../../components/Spinner/Spinner";
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop'
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 
-import { searchNewsRequest, updateInputValue } from "./store/Actions";
+import {
+  searchNewsRequest,
+  updateInputValue,
+  termChange,
+} from "./store/Actions";
 
 const Search = () => {
   const dispatch = useDispatch();
   const inputElement = useRef(null);
-  const { results, isLoading, error, inputValue } = useSelector(
+  const { results, isLoading, error, inputValue, pageIndex } = useSelector(
     (state) => state.searchResults
   );
 
@@ -25,8 +29,13 @@ const Search = () => {
     dispatch(updateInputValue(event.target.value));
   };
 
+  const handleLoadMore = () => {
+    dispatch(searchNewsRequest(inputValue, pageIndex + 1));
+  };
+
   const search = () => {
-    dispatch(searchNewsRequest(inputValue));
+    dispatch(termChange());
+    dispatch(searchNewsRequest(inputValue, pageIndex));
   };
 
   const handleKeyPress = (event) => {
@@ -54,17 +63,16 @@ const Search = () => {
         </Button>
       </SearchForm>
       <Container>
-        {isLoading ? (
-          <LargeSpinner />
-        ) : (
-          <Row>
-            {results &&
-              results.map((item) => (
-                <Col key={item.id}>
-                  <NewsCard article={item} />
-                </Col>
-              ))}
-          </Row>
+        <Row>
+          {results &&
+            results.map((item) => (
+              <Col key={item.id}>
+                <NewsCard article={item} />
+              </Col>
+            ))}
+        </Row>
+        {(isLoading || results.length) > 0 && (
+          <LoadMoreButton onClick={handleLoadMore} isLoading={isLoading} />
         )}
         {error && <div>{error.message}</div>}
         <ScrollToTop />
