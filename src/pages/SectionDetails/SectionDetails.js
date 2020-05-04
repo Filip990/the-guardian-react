@@ -4,8 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop'
-import LoadMoreButton from '../../components/LoadMore/LoadMoreButton';
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
+import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 
 import { API_KEY } from "../../constants";
 
@@ -14,6 +14,7 @@ const SectionDetails = () => {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
+  const [sort, setSort] = useState("newest");
 
   useEffect(() => {
     // clear the news array on location change
@@ -24,7 +25,7 @@ const SectionDetails = () => {
     const fetchSections = async (section) => {
       setIsLoading(true);
       const res = await fetch(
-        `https://content.guardianapis.com/${section}?show-fields=headline,trailText,body,thumbnail&page=${pageIndex}&page-size=30&api-key=${API_KEY}`
+        `https://content.guardianapis.com/${section}?show-fields=headline,trailText,body,thumbnail&page=${pageIndex}&page-size=30&order-by=${sort}&api-key=${API_KEY}`
       );
       const json = await res.json();
       setNews((previousNewsSet) => [
@@ -35,7 +36,7 @@ const SectionDetails = () => {
     };
 
     fetchSections(section);
-  }, [section, pageIndex]);
+  }, [section, pageIndex, sort]);
 
   const handleLoadMore = () => {
     // just increment the index, it will be passed to useEffect and trigger
@@ -43,10 +44,16 @@ const SectionDetails = () => {
     setPageIndex((previousIndex) => previousIndex + 1);
   };
 
+  const changeSort = (event) => {
+    setNews([]);
+    setSort(event);
+  };
 
   return (
     <Container>
-      <SectionHeader>{section === "search" ? "Latest" : section}</SectionHeader>
+      <SectionHeader onChange={changeSort} orderBy={sort}>
+        {section === "search" ? "Latest" : section}
+      </SectionHeader>
       <Row>
         {news &&
           news.map((item) => (
