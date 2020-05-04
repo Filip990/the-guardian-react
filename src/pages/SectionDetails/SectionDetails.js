@@ -4,28 +4,22 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop'
 
-import { LoadMoreBtn, ScrollToTopImg } from "./SectionDetails.styled";
+import { LoadMoreBtn } from "./SectionDetails.styled";
 
 import { API_KEY } from "../../constants";
-import scroll from "../../assets/scroll-top.png";
 
-const SectionDetails = (props) => {
+const SectionDetails = () => {
   const { section } = useParams();
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageIndex, setPageIndex] = useState(1);
-  const [scrollToTopVisible, setScrollToTopVisible] = useState(false);
 
   useEffect(() => {
     // clear the news array on location change
     setNews([]);
   }, [section]);
-
-  useEffect(() => {
-    document.addEventListener("scroll", toggleVisibility);
-    return () => document.removeEventListener("scroll", toggleVisibility);
-  }, []);
 
   useEffect(() => {
     const fetchSections = async (section) => {
@@ -50,20 +44,6 @@ const SectionDetails = (props) => {
     setPageIndex((previousIndex) => previousIndex + 1);
   };
 
-  const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-      setScrollToTopVisible(true);
-    } else {
-      setScrollToTopVisible(false);
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <Container>
@@ -89,14 +69,7 @@ const SectionDetails = (props) => {
         )}{" "}
         {isLoading ? "Loading" : " Load More"}
       </LoadMoreBtn>
-      {scrollToTopVisible && (
-        <ScrollToTopImg
-          src={scroll}
-          alt=""
-          className="scroll-top"
-          onClick={scrollToTop}
-        />
-      )}
+      <ScrollToTop />
     </Container>
   );
 };

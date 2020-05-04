@@ -6,6 +6,7 @@ import { SearchForm } from "./Search.styled";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import LargeSpinner from "../../components/Spinner/Spinner";
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop'
 
 import { searchNewsRequest, updateInputValue } from "./store/Actions";
 
@@ -66,6 +67,7 @@ const Search = () => {
           </Row>
         )}
         {error && <div>{error.message}</div>}
+        <ScrollToTop />
       </Container>
     </>
   );
