@@ -10,9 +10,9 @@ export function* watchSearchSaga() {
   yield takeLatest(SEARCH_NEWS_REQUEST_START, searchSaga);
 }
 
-const getResults = async (inputVal) => {
+const getResults = async (inputVal, pageIndex) => {
   const res = await fetch(
-    `https://content.guardianapis.com/search?q="${inputVal}"&show-fields=headline,trailText,body,thumbnail&page-size=30&order-by=newest&api-key=${API_KEY}`
+    `https://content.guardianapis.com/search?q="${inputVal}"&show-fields=headline,trailText,body,thumbnail&page=${pageIndex}&page-size=30&order-by=newest&api-key=${API_KEY}`
   );
   const json = await res.json();
   return json.response.results;
@@ -20,7 +20,7 @@ const getResults = async (inputVal) => {
 
 function* searchSaga(action) {
   try {
-    const results = yield call(getResults, action.term);
+    const results = yield call(getResults, action.term, action.index);
     yield put({ type: SEARCH_NEWS_REQUEST_SUCCESS, results });
   } catch (error) {
     yield put({ type: SEARCH_NEWS_REQUEST_FAILURE, error });

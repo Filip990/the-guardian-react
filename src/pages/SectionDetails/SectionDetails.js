@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import ScrollToTop from '../../components/ScrollToTop/ScrollToTop'
-
-import { LoadMoreBtn } from "./SectionDetails.styled";
+import LoadMoreButton from '../../components/LoadMore/LoadMoreButton';
 
 import { API_KEY } from "../../constants";
 
@@ -56,19 +55,7 @@ const SectionDetails = () => {
             </Col>
           ))}
       </Row>
-
-      <LoadMoreBtn onClick={handleLoadMore}>
-        {isLoading && (
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-        )}{" "}
-        {isLoading ? "Loading" : " Load More"}
-      </LoadMoreBtn>
+      <LoadMoreButton onClick={handleLoadMore} isLoading={isLoading} />
       <ScrollToTop />
     </Container>
   );
