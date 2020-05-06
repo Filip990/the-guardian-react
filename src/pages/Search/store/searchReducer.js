@@ -1,7 +1,7 @@
 import {
-  SEARCH_NEWS_REQUEST_START,
-  SEARCH_NEWS_REQUEST_SUCCESS,
-  SEARCH_NEWS_REQUEST_FAILURE,
+  SEARCH_NEWS_REQUEST,
+  SEARCH_NEWS_SUCCESS,
+  SEARCH_NEWS_FAILURE,
   INPUT_VALUE_CHANGE,
   TERM_CHANGE,
 } from "./Actions";
@@ -25,17 +25,17 @@ const searchReducer = (state = initialState, action) => {
       case TERM_CHANGE:
         draft.results = [];
         break;
-      case SEARCH_NEWS_REQUEST_START:
+      case SEARCH_NEWS_REQUEST:
         draft.isLoading = true;
         draft.pageIndex = action.index;
         break;
 
-      case SEARCH_NEWS_REQUEST_SUCCESS:
+      case SEARCH_NEWS_SUCCESS:
         draft.results = [...draft.results, ...action.results];
         draft.isLoading = false;
         break;
 
-      case SEARCH_NEWS_REQUEST_FAILURE:
+      case SEARCH_NEWS_FAILURE:
         draft.isLoading = false;
         draft.error = action.error;
         break;

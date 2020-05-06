@@ -1,9 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Navbar, Nav } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
 
+import { changeSection } from "../../pages/SectionDetails/store/Actions";
+
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleSectionClick = () => {
+    dispatch(changeSection());
+  };
 
   return (
     <Navbar
@@ -20,7 +28,7 @@ const Header = () => {
           setExpanded((prevExpanded) => (prevExpanded = !prevExpanded))
         }
       />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Collapse id="basic-navbar-nav" onClick={handleSectionClick}>
         <Nav className="mr-auto" onClick={() => setExpanded(false)}>
           <HeaderLink exact to="/">
             Home
