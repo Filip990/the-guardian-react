@@ -7,6 +7,7 @@ import { SearchForm } from "./Search.styled";
 import NewsCard from "../../components/NewsCard/NewsCard";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
+import SectionHeader from "../../components/SectionHeader/SectionHeader";
 
 import {
   searchNewsRequest,
@@ -17,9 +18,15 @@ import {
 const Search = () => {
   const dispatch = useDispatch();
   const inputElement = useRef(null);
-  const { results, isLoading, error, inputValue, pageIndex } = useSelector(
-    (state) => state.searchResults
-  );
+  const {
+    results,
+    isLoading,
+    error,
+    inputValue,
+    searchTerm,
+    orderBy,
+    pageIndex,
+  } = useSelector((state) => state.searchResults);
 
   useEffect(() => {
     inputElement.current.focus();
@@ -63,6 +70,11 @@ const Search = () => {
         </Button>
       </SearchForm>
       <Container>
+        {results.length > 0 && (
+          <SectionHeader isLinkVisible={false} orderBy={orderBy}>
+            Showing results for {searchTerm}
+          </SectionHeader>
+        )}
         <Row>
           {results &&
             results.map((item) => (

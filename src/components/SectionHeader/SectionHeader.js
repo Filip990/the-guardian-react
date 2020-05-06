@@ -2,17 +2,15 @@ import React from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
 import { StyledHeader, HeaderLink } from "./SectionHeader.styled";
-import { useLocation } from "react-router-dom";
 
 const SectionHeader = (props) => {
-  const { pathname } = useLocation();
-  const isVisible = pathname.includes("/section");
-
+  const isLinkVisible = props.isLinkVisible;
+  // Move onChange into this component.. Needs diciding from where are we handling updates for this
   return (
     <StyledHeader>
       {props.children}
-      {!isVisible && <HeaderLink to={props.link}>see all</HeaderLink>}
-      {isVisible && (
+      {isLinkVisible && <HeaderLink to={props.link}>see all</HeaderLink>}
+      {!isLinkVisible && (
         <DropdownButton
           id="dropdown-item-button"
           variant="primary"

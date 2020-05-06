@@ -50,7 +50,11 @@ const SectionDetails = () => {
 
   return (
     <Container>
-      <SectionHeader onChange={changeSort} orderBy={orderBy}>
+      <SectionHeader
+        onChange={changeSort}
+        orderBy={orderBy}
+        isLinkVisible={false}
+      >
         {section === "search" ? "Latest" : section}
       </SectionHeader>
       <Row>

@@ -10,8 +10,10 @@ import produce from "immer";
 const initialState = {
   results: [],
   inputValue: "",
+  searchTerm: "",
   isLoading: false,
   pageIndex: 1,
+  orderBy: "newest",
   error: null,
 };
 
@@ -28,6 +30,7 @@ const searchReducer = (state = initialState, action) => {
       case SEARCH_NEWS_REQUEST:
         draft.isLoading = true;
         draft.pageIndex = action.index;
+        draft.searchTerm = action.term;
         break;
 
       case SEARCH_NEWS_SUCCESS:

@@ -31,7 +31,9 @@ const Home = () => {
       <Row>
         {latest && (
           <CarouselContainer>
-            <SectionHeader link="section/search">Latest News</SectionHeader>
+            <SectionHeader isLinkVisible={true} link="section/search">
+              Latest News
+            </SectionHeader>
             <CarouselComponent carouselItems={latest.results} />
           </CarouselContainer>
         )}
