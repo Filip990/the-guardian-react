@@ -6,6 +6,7 @@ import createSagaMiddleware from "redux-saga";
 
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
 import searchReducer from "./pages/Search/store/searchReducer";
+import sectionReducer from "./pages/SectionDetails/store/sectionReducer";
 import sagas from "./store/sagas";
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
     combineReducers({
       newsFeed: newsFeedReducer,
       searchResults: searchReducer,
+      newsBySection: sectionReducer,
     }),
     applyMiddleware(sagaMiddleware)
   );

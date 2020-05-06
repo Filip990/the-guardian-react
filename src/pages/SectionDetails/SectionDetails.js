@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 
 import NewsCard from "../../components/NewsCard/NewsCard";
@@ -7,56 +8,54 @@ import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 
-import { API_KEY } from "../../constants";
+import {
+  getSectionNewsRequest,
+  changePageIndex,
+  changeOrderBy,
+} from "./store/Actions";
+
+let prevSection = null;
+let prevIndex = null;
+let prevOrder = null;
 
 const SectionDetails = () => {
+  const dispatch = useDispatch();
   const { section } = useParams();
-  const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [pageIndex, setPageIndex] = useState(1);
-  const [sort, setSort] = useState("newest");
+  const { sectionNews, isLoading, pageIndex, error, orderBy } = useSelector(
+    (state) => state.newsBySection
+  );
 
   useEffect(() => {
-    // clear the news array on location change
-    setNews([]);
-  }, [section]);
-
-  useEffect(() => {
-    const fetchSections = async (section) => {
-      setIsLoading(true);
-      const res = await fetch(
-        `https://content.guardianapis.com/${section}?show-fields=headline,trailText,body,thumbnail&page=${pageIndex}&page-size=30&order-by=${sort}&api-key=${API_KEY}`
-      );
-      const json = await res.json();
-      setNews((previousNewsSet) => [
-        ...previousNewsSet,
-        ...json.response.results,
-      ]);
-      setIsLoading(false);
-    };
-
-    fetchSections(section);
-  }, [section, pageIndex, sort]);
+    if (
+      prevSection === section &&
+      prevIndex === pageIndex &&
+      prevOrder === orderBy
+    ) {
+      return;
+    }
+    prevSection = section;
+    prevIndex = pageIndex;
+    prevOrder = orderBy;
+    dispatch(getSectionNewsRequest(section, orderBy, pageIndex));
+  }, [dispatch, section, orderBy, pageIndex]);
 
   const handleLoadMore = () => {
-    // just increment the index, it will be passed to useEffect and trigger
-    // it since it is one of it's dependencies
-    setPageIndex((previousIndex) => previousIndex + 1);
+    dispatch(changePageIndex(pageIndex + 1));
   };
 
   const changeSort = (event) => {
-    setNews([]);
-    setSort(event);
+    // if statement prevents API call if a same orderBy is clicked multiple times
+    if (event !== orderBy) dispatch(changeOrderBy(event));
   };
 
   return (
     <Container>
-      <SectionHeader onChange={changeSort} orderBy={sort}>
+      <SectionHeader onChange={changeSort} orderBy={orderBy}>
         {section === "search" ? "Latest" : section}
       </SectionHeader>
       <Row>
-        {news &&
-          news.map((item) => (
+        {sectionNews &&
+          sectionNews.map((item) => (
             <Col key={item.id}>
               <NewsCard article={item} />
             </Col>
@@ -64,6 +63,7 @@ const SectionDetails = () => {
       </Row>
       <LoadMoreButton onClick={handleLoadMore} isLoading={isLoading} />
       <ScrollToTop />
+      {error && <div>{error.message}</div>}
     </Container>
   );
 };
