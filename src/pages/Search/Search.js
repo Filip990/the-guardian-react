@@ -14,6 +14,7 @@ import {
   updateInputValue,
   termChange,
 } from "./store/Actions";
+import { changeOrderBy } from "../../store/Actions";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const Search = () => {
   } = useSelector((state) => state.searchResults);
 
   useEffect(() => {
+    // focus input on page load
     inputElement.current.focus();
   }, []);
 
@@ -37,16 +39,24 @@ const Search = () => {
   };
 
   const handleLoadMore = () => {
-    dispatch(searchNewsRequest(inputValue, pageIndex + 1));
+    dispatch(searchNewsRequest(inputValue, pageIndex + 1, orderBy));
   };
 
   const search = () => {
     dispatch(termChange());
-    dispatch(searchNewsRequest(inputValue, pageIndex));
+    dispatch(searchNewsRequest(inputValue, pageIndex, orderBy));
   };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter" && inputValue.length > 0) search();
+  };
+
+  const changeSort = (event) => {
+    // if statement prevents API call if a same orderBy is clicked multiple times
+    if (event !== orderBy) {
+      dispatch(changeOrderBy(event));
+      dispatch(searchNewsRequest(inputValue, pageIndex, event));
+    }
   };
 
   return (
@@ -71,7 +81,11 @@ const Search = () => {
       </SearchForm>
       <Container>
         {results.length > 0 && (
-          <SectionHeader isLinkVisible={false} orderBy={orderBy}>
+          <SectionHeader
+            isLinkVisible={false}
+            orderBy={orderBy}
+            onChange={changeSort}
+          >
             Showing results for {searchTerm}
           </SectionHeader>
         )}
@@ -83,7 +97,7 @@ const Search = () => {
               </Col>
             ))}
         </Row>
-        {(isLoading || results.length) > 0 && (
+        {(isLoading || results.length > 0) && (
           <LoadMoreButton onClick={handleLoadMore} isLoading={isLoading} />
         )}
         {error && <div>{error.message}</div>}

@@ -5,6 +5,7 @@ import {
   INPUT_VALUE_CHANGE,
   TERM_CHANGE,
 } from "./Actions";
+import { CHANGE_ORDER } from "../../../store/Actions";
 import produce from "immer";
 
 const initialState = {
@@ -26,6 +27,10 @@ const searchReducer = (state = initialState, action) => {
         break;
       case TERM_CHANGE:
         draft.results = [];
+        break;
+      case CHANGE_ORDER:
+        draft.results = [];
+        draft.orderBy = action.order;
         break;
       case SEARCH_NEWS_REQUEST:
         draft.isLoading = true;

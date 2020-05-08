@@ -1,17 +1,21 @@
 import React from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
-import { StyledHeader, HeaderLink } from "./SectionHeader.styled";
+import {
+  StyledHeader,
+  HeaderLink,
+  StyledDropDown,
+} from "./SectionHeader.styled";
 
 const SectionHeader = (props) => {
-  const isLinkVisible = props.isLinkVisible;
-  // Move onChange into this component.. Needs diciding from where are we handling updates for this
+  const { isLinkVisible } = props;
+
   return (
     <StyledHeader>
       {props.children}
       {isLinkVisible && <HeaderLink to={props.link}>see all</HeaderLink>}
       {!isLinkVisible && (
-        <DropdownButton
+        <StyledDropDown
           id="dropdown-item-button"
           variant="primary"
           title={`Sort by: ${props.orderBy}`}
@@ -26,7 +30,7 @@ const SectionHeader = (props) => {
           <Dropdown.Item as="button" eventKey="oldest">
             Oldest
           </Dropdown.Item>
-        </DropdownButton>
+        </StyledDropDown>
       )}
     </StyledHeader>
   );
