@@ -1,19 +1,21 @@
 import React from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
-import { StyledHeader, HeaderLink } from "./SectionHeader.styled";
-import { useLocation } from "react-router-dom";
+import {
+  StyledHeader,
+  HeaderLink,
+  StyledDropDown,
+} from "./SectionHeader.styled";
 
 const SectionHeader = (props) => {
-  const { pathname } = useLocation();
-  const isVisible = pathname.includes("/section");
+  const { isLinkVisible } = props;
 
   return (
     <StyledHeader>
       {props.children}
-      {!isVisible && <HeaderLink to={props.link}>see all</HeaderLink>}
-      {isVisible && (
-        <DropdownButton
+      {isLinkVisible && <HeaderLink to={props.link}>see all</HeaderLink>}
+      {!isLinkVisible && (
+        <StyledDropDown
           id="dropdown-item-button"
           variant="primary"
           title={`Sort by: ${props.orderBy}`}
@@ -28,7 +30,7 @@ const SectionHeader = (props) => {
           <Dropdown.Item as="button" eventKey="oldest">
             Oldest
           </Dropdown.Item>
-        </DropdownButton>
+        </StyledDropDown>
       )}
     </StyledHeader>
   );

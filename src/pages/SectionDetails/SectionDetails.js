@@ -8,12 +8,10 @@ import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 
-import {
-  getSectionNewsRequest,
-  changePageIndex,
-  changeOrderBy,
-} from "./store/Actions";
+import { getSectionNewsRequest, changePageIndex } from "./store/Actions";
+import { changeOrderBy } from "../../store/Actions";
 
+// save the previous value of section, index and order properties
 let prevSection = null;
 let prevIndex = null;
 let prevOrder = null;
@@ -27,6 +25,7 @@ const SectionDetails = () => {
 
   useEffect(() => {
     if (
+      // prevent API call if no props are changed
       prevSection === section &&
       prevIndex === pageIndex &&
       prevOrder === orderBy
@@ -50,7 +49,11 @@ const SectionDetails = () => {
 
   return (
     <Container>
-      <SectionHeader onChange={changeSort} orderBy={orderBy}>
+      <SectionHeader
+        onChange={changeSort}
+        orderBy={orderBy}
+        isLinkVisible={false}
+      >
         {section === "search" ? "Latest" : section}
       </SectionHeader>
       <Row>

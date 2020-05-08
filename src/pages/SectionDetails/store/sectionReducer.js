@@ -3,9 +3,9 @@ import {
   GET_SECTION_NEWS_SUCCESS,
   GET_SECTION_NEWS_FAILURE,
   PAGE_INDEX_CHANGE,
-  CHANGE_ORDER,
   SECTION_CHANGED,
 } from "./Actions";
+import { CHANGE_ORDER } from "../../../store/Actions";
 import produce from "immer";
 
 const initialState = {
@@ -35,6 +35,7 @@ const sectionReducer = (state = initialState, action) => {
       case GET_SECTION_NEWS_SUCCESS:
         draft.isLoading = false;
         draft.sectionNews = [...draft.sectionNews, ...action.results];
+        // spread the results for load more functionality
         break;
       case GET_SECTION_NEWS_FAILURE:
         draft.isLoading = false;

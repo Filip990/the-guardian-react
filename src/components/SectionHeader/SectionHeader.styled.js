@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { DropdownButton } from "react-bootstrap";
 
 export const StyledHeader = styled.h3`
   display: flex;
@@ -14,6 +15,12 @@ export const StyledHeader = styled.h3`
   font-weight: 600;
   padding: 8px 8px 0;
   border-bottom: 12px solid #007bff;
+`;
+
+export const StyledDropDown = styled(DropdownButton)`
+  .btn {
+    border-radius: 0;
+  }
 `;
 
 export const HeaderLink = styled(Link)`

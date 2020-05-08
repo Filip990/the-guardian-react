@@ -9,7 +9,10 @@ const Section = (props) => {
 
   return (
     <>
-      <SectionHeader link={`section/${details.section?.id}`}>
+      <SectionHeader
+        isLinkVisible={true}
+        link={`section/${details.section?.id}`}
+      >
         {details.section?.webTitle}
       </SectionHeader>
       <Row>

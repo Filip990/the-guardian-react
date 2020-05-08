@@ -12,10 +12,11 @@ export const updateInputValue = (value) => ({
   type: INPUT_VALUE_CHANGE,
   value,
 });
-export const searchNewsRequest = (term, index) => ({
+export const searchNewsRequest = (term, index, order) => ({
   type: SEARCH_NEWS_REQUEST,
-  term,
-  index,
+  term, // search term
+  index, // page index
+  order, // orderBy
 });
 export const searchNewsSuccess = (payload) => ({
   type: SEARCH_NEWS_SUCCESS,
