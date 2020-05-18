@@ -1,9 +1,10 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import { StyledForm } from "./UserForm.styled";
 
 const UserForm = (props) => {
   return (
-    <Form onSubmit={props.onSubmit}>
+    <StyledForm onSubmit={props.onSubmit}>
       <Form.Group controlId="email">
         <Form.Label>Email address</Form.Label>
         <Form.Control required type="email" placeholder="Enter email" />
@@ -19,7 +20,7 @@ const UserForm = (props) => {
       <Button variant="primary" type="submit">
         Submit
       </Button>
-    </Form>
+    </StyledForm>
   );
 };
 

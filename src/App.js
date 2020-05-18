@@ -7,6 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
 import searchReducer from "./pages/Search/store/searchReducer";
 import sectionReducer from "./pages/SectionDetails/store/sectionReducer";
+import userReducer from "./pages/LogIn/store/userReducer";
 import sagas from "./store/sagas";
 import "./App.css";
 
@@ -27,6 +28,7 @@ function App() {
       newsFeed: newsFeedReducer,
       searchResults: searchReducer,
       newsBySection: sectionReducer,
+      user: userReducer,
     }),
     applyMiddleware(sagaMiddleware)
   );

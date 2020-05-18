@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import UserForm from "../../components/UserForm/UserForm";
 
 const SignUp = ({ history }) => {
   const auth = useAuth();
@@ -7,9 +8,11 @@ const SignUp = ({ history }) => {
   const handleSignup = useCallback(
     async (event) => {
       event.preventDefault();
-      const { email, password } = event.target.elements; //email and password are just DOM nodes here
+      const form = event.target;
+      const email = form.elements.email.value;
+      const password = form.elements.password.value;
       try {
-        await auth.signup(email.value, password.value);
+        await auth.signup(email, password);
         history.push("/");
       } catch (error) {
         alert(error);
@@ -19,20 +22,10 @@ const SignUp = ({ history }) => {
   );
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSignup}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+    <>
+      <h2>Sign Up</h2>
+      <UserForm onSubmit={handleSignup} />
+    </>
   );
 };
 
