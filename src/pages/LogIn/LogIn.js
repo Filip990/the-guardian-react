@@ -1,9 +1,11 @@
 import React, { useCallback } from "react";
-import { useAuth } from "../../hooks/useAuth";
-import UserForm from "../../components/UserForm/UserForm";
 import { Link } from "react-router-dom";
-import { logInSuccess } from "./store/Actions";
 import { useDispatch } from "react-redux";
+
+import UserForm from "../../components/UserForm/UserForm";
+
+import { useAuth } from "../../hooks/useAuth";
+import { logInSuccess } from "./store/Actions";
 
 const LogIn = ({ history }) => {
   const auth = useAuth();

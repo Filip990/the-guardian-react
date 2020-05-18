@@ -1,5 +1,5 @@
 import produce from "immer";
-import { LOG_IN_START, LOG_IN_SUCCESS, LOG_IN_FAILURE } from "./Actions";
+import { LOG_IN_SUCCESS, LOG_OUT } from "./Actions";
 
 const initialState = {
   user: null,
@@ -10,7 +10,10 @@ const userReducer = (state = initialState, action) => {
     switch (action.type) {
       case LOG_IN_SUCCESS:
         draft.user = action;
-        debugger;
+        console.log(draft.user);
+        break;
+      case LOG_OUT:
+        draft.user = null;
         break;
       default:
         return state;

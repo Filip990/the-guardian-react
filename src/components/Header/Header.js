@@ -1,31 +1,34 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
 import { useAuth } from "../../hooks/useAuth";
 
 import { changeSection } from "../../pages/SectionDetails/store/Actions";
+import { logOut } from "../../pages/LogIn/store/Actions";
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
   const auth = useAuth();
+  const { user } = useSelector((state) => state.user);
 
   const handleSectionClick = () => {
     dispatch(changeSection());
-    toggleNavbar();
+    if (expanded === true) toggleNavbar();
   };
 
   const handleLogout = () => {
     auth.signout();
-    toggleNavbar();
+    dispatch(logOut());
+    if (expanded === true) toggleNavbar();
   };
 
   const toggleNavbar = () => {
     setExpanded((prevExpanded) => (prevExpanded = !prevExpanded));
   };
 
-  return (
+  return user ? (
     <Navbar
       expanded={expanded}
       bg="dark"
@@ -50,7 +53,7 @@ const Header = () => {
         <Button onClick={handleLogout}>Sign Out</Button>
       </Navbar.Collapse>
     </Navbar>
-  );
+  ) : null;
 };
 
 export default Header;
