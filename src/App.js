@@ -15,6 +15,10 @@ import Article from "./pages/Article/Article";
 import Header from "./components/Header/Header";
 import SectionDetails from "./pages/SectionDetails/SectionDetails";
 import Search from "./pages/Search/Search";
+import PrivateRoute from "./PrivateRoute";
+import SignUp from "./pages/SignUp/SignUp";
+import LogIn from "./pages/LogIn/LogIn";
+import { ProvideAuth } from "./hooks/useAuth";
 
 function App() {
   const sagaMiddleware = createSagaMiddleware();
@@ -33,13 +37,20 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/search" component={Search} />
-            <Route path="/section/:section" component={SectionDetails} />
-            <Route path="/:id" component={Article} />
-          </Switch>
+          <ProvideAuth>
+            <Header />
+            <Switch>
+              <Route path="/login" component={LogIn} />
+              <Route path="/signup" component={SignUp} />
+              <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute path="/search" component={Search} />
+              <PrivateRoute
+                path="/section/:section"
+                component={SectionDetails}
+              />
+              <PrivateRoute path="/:id" component={Article} />
+            </Switch>
+          </ProvideAuth>
         </Router>
       </Provider>
     </div>
