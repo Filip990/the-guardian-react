@@ -1,19 +1,21 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import UserForm from "../../components/UserForm/UserForm";
 
 import { useAuth } from "../../hooks/useAuth";
-import { logInSuccess } from "./store/Actions";
+import { logInSuccess, logInStart } from "./store/Actions";
 
 const LogIn = ({ history }) => {
   const auth = useAuth();
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.user);
 
   const handleLogIn = useCallback(
     async (event) => {
       event.preventDefault();
+      dispatch(logInStart());
       const form = event.target;
       const email = form.elements.email.value;
       const password = form.elements.password.value;
@@ -31,7 +33,7 @@ const LogIn = ({ history }) => {
   return (
     <>
       <h2>Log In</h2>
-      <UserForm onSubmit={handleLogIn} />
+      <UserForm onSubmit={handleLogIn} isLoading={isLoading} />
       <p>
         Don't have an account? <Link to={"/signup"}>Create one</Link>
       </p>

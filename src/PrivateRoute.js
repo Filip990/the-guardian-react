@@ -4,7 +4,7 @@ import { useAuth } from "./hooks/useAuth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const auth = useAuth();
-  console.log(auth);
+
   return (
     <Route
       {...rest}

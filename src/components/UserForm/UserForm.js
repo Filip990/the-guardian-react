@@ -1,8 +1,10 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { StyledForm } from "./UserForm.styled";
 
 const UserForm = (props) => {
+  const isLoading = props.isLoading;
+
   return (
     <StyledForm onSubmit={props.onSubmit}>
       <Form.Group controlId="email">
@@ -18,7 +20,17 @@ const UserForm = (props) => {
         <Form.Control required type="password" placeholder="Password" />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        {isLoading ? (
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+        ) : (
+          "Submit"
+        )}
       </Button>
     </StyledForm>
   );

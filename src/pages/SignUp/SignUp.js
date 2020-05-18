@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 
 import { useAuth } from "../../hooks/useAuth";
 import UserForm from "../../components/UserForm/UserForm";
+import { Link } from "react-router-dom";
 
 const SignUp = ({ history }) => {
   const auth = useAuth();
@@ -26,6 +27,9 @@ const SignUp = ({ history }) => {
     <>
       <h2>Sign Up</h2>
       <UserForm onSubmit={handleSignup} />
+      <p>
+        <Link to={"/login"}>Back to Log In</Link>
+      </p>
     </>
   );
 };
