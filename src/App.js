@@ -7,6 +7,7 @@ import createSagaMiddleware from "redux-saga";
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
 import searchReducer from "./pages/Search/store/searchReducer";
 import sectionReducer from "./pages/SectionDetails/store/sectionReducer";
+import userReducer from "./pages/LogIn/store/userReducer";
 import sagas from "./store/sagas";
 import "./App.css";
 
@@ -15,6 +16,10 @@ import Article from "./pages/Article/Article";
 import Header from "./components/Header/Header";
 import SectionDetails from "./pages/SectionDetails/SectionDetails";
 import Search from "./pages/Search/Search";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import SignUp from "./pages/SignUp/SignUp";
+import LogIn from "./pages/LogIn/LogIn";
+import { ProvideAuth } from "./utils/hooks/useAuth";
 
 function App() {
   const sagaMiddleware = createSagaMiddleware();
@@ -23,6 +28,7 @@ function App() {
       newsFeed: newsFeedReducer,
       searchResults: searchReducer,
       newsBySection: sectionReducer,
+      user: userReducer,
     }),
     applyMiddleware(sagaMiddleware)
   );
@@ -33,13 +39,20 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/search" component={Search} />
-            <Route path="/section/:section" component={SectionDetails} />
-            <Route path="/:id" component={Article} />
-          </Switch>
+          <ProvideAuth>
+            <Header />
+            <Switch>
+              <Route path="/login" component={LogIn} />
+              <Route path="/signup" component={SignUp} />
+              <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute path="/search" component={Search} />
+              <PrivateRoute
+                path="/section/:section"
+                component={SectionDetails}
+              />
+              <PrivateRoute path="/:id" component={Article} />
+            </Switch>
+          </ProvideAuth>
         </Router>
       </Provider>
     </div>
