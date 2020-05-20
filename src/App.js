@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 
+// Reducers
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
 import searchReducer from "./pages/Search/store/searchReducer";
 import sectionReducer from "./pages/SectionDetails/store/sectionReducer";
@@ -11,6 +12,7 @@ import userReducer from "./pages/LogIn/store/userReducer";
 import sagas from "./store/sagas";
 import "./App.css";
 
+// Components
 import Home from "./pages/Home/Home";
 import Article from "./pages/Article/Article";
 import Header from "./components/Header/Header";
@@ -19,6 +21,8 @@ import Search from "./pages/Search/Search";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SignUp from "./pages/SignUp/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
+
+//utils
 import { ProvideAuth } from "./utils/hooks/useAuth";
 
 function App() {

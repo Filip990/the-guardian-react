@@ -3,7 +3,7 @@ import { Form, Button, Spinner } from "react-bootstrap";
 import { StyledForm } from "./UserForm.styled";
 
 const UserForm = (props) => {
-  const isLoading = props.isLoading;
+  const { isLoading } = props;
 
   return (
     <StyledForm onSubmit={props.onSubmit}>

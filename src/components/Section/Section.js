@@ -17,9 +17,9 @@ const Section = (props) => {
       </SectionHeader>
       <Row>
         {details.results &&
-          details.results.map((item) => (
-            <Col key={item.id}>
-              <NewsCard article={item} />
+          details.results.map((article) => (
+            <Col key={article.id}>
+              <NewsCard article={article} />
             </Col>
           ))}
       </Row>
