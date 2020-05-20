@@ -72,6 +72,7 @@ function useProvideAuth() {
       });
   };
 
+  // password reset logic is not currently used in UI
   const sendPasswordResetEmail = (email) => {
     return firebase
       .auth()

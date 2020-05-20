@@ -12,6 +12,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const auth = useAuth();
   const { user } = useSelector((state) => state.user);
+  const token = localStorage.getItem("currentUser");
 
   const handleSectionClick = () => {
     dispatch(changeSection());
@@ -28,7 +29,7 @@ const Header = () => {
     setExpanded((prevExpanded) => (prevExpanded = !prevExpanded));
   };
 
-  return user ? (
+  return user || token ? (
     <Navbar
       expanded={expanded}
       bg="dark"
