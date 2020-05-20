@@ -12,6 +12,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const auth = useAuth();
   const { user } = useSelector((state) => state.user);
+
+  // hack, need to figure out the way to store this in the state...
+  //... bcs the {user} from state is null after refresh
   const token = localStorage.getItem("currentUser");
 
   const handleSectionClick = () => {

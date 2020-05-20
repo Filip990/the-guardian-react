@@ -23,11 +23,11 @@ const sectionReducer = (state = initialState, action) => {
         draft.pageIndex = action.index;
         break;
       case CHANGE_ORDER:
-        draft.sectionNews = [];
+        draft.sectionNews = []; // clear the array on order change
         draft.orderBy = action.order;
         break;
       case SECTION_CHANGED:
-        draft.sectionNews = [];
+        draft.sectionNews = []; // clear the array on section change
         break;
       case GET_SECTION_NEWS_REQUEST:
         draft.isLoading = true;
@@ -35,7 +35,8 @@ const sectionReducer = (state = initialState, action) => {
       case GET_SECTION_NEWS_SUCCESS:
         draft.isLoading = false;
         draft.sectionNews = [...draft.sectionNews, ...action.results];
-        // spread the results for load more functionality
+        // spread the results for load more functionality...
+        // which is why we manually clear the array on any prop change (section, page, order)
         break;
       case GET_SECTION_NEWS_FAILURE:
         draft.isLoading = false;

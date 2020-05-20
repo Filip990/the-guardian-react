@@ -11,7 +11,7 @@ import produce from "immer";
 const initialState = {
   results: [],
   inputValue: "",
-  searchTerm: "",
+  searchTerm: "", // stored for displaying in the header, as in 'Results for {searchTerm}'
   isLoading: false,
   pageIndex: 1,
   orderBy: "newest",
@@ -26,7 +26,7 @@ const searchReducer = (state = initialState, action) => {
         draft.pageIndex = 1;
         break;
       case TERM_CHANGE:
-        draft.results = [];
+        draft.results = []; // dispatched upon search
         break;
       case CHANGE_ORDER:
         draft.results = [];

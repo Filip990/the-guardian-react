@@ -43,8 +43,9 @@ const Search = () => {
   };
 
   const search = () => {
-    dispatch(termChange());
-    dispatch(searchNewsRequest(inputValue, pageIndex, orderBy));
+    dispatch(termChange()); // term change will clear the results array...
+    dispatch(searchNewsRequest(inputValue, pageIndex, orderBy)); // .. so we can repopulate it here...
+    //...with fresh data
   };
 
   const handleKeyPress = (event) => {

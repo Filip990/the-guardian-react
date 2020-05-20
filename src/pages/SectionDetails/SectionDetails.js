@@ -11,7 +11,8 @@ import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 import { getSectionNewsRequest, changePageIndex } from "./store/Actions";
 import { changeOrderBy } from "../../store/Actions";
 
-// save the previous value of section, index and order properties
+// save the previous value of section, index and order properties...
+//.. bcs we are manipulating the sectionNews array on change of either of those properties
 let prevSection = null;
 let prevIndex = null;
 let prevOrder = null;
@@ -54,6 +55,7 @@ const SectionDetails = () => {
         orderBy={orderBy}
         isLinkVisible={false}
       >
+        {/* url param for "Latest" is actually "Search", and we're getting section name from url param */}
         {section === "search" ? "Latest" : section}
       </SectionHeader>
       <Row>
