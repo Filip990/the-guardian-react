@@ -15,7 +15,6 @@ const userReducer = (state = initialState, action) => {
       case LOG_IN_SUCCESS:
         draft.user = action;
         draft.isLoading = false;
-        console.log(draft.user);
         break;
       case LOG_OUT:
         draft.user = null;

@@ -4,7 +4,7 @@ import {
   GET_SECTION_NEWS_SUCCESS,
   GET_SECTION_NEWS_FAILURE,
 } from "./Actions";
-import { API_KEY } from "../../../constants";
+import { API_KEY } from "../../../utils/constants";
 
 export function* watchSectionSaga() {
   yield takeLatest(GET_SECTION_NEWS_REQUEST, sectionSaga);

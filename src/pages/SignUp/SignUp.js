@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../utils/hooks/useAuth";
 import UserForm from "../../components/UserForm/UserForm";
 import { Link } from "react-router-dom";
 

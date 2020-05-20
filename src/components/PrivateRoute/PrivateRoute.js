@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const auth = useAuth();
+  const test = localStorage.getItem("currentUser");
 
   return (
     <Route

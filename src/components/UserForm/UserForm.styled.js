@@ -3,5 +3,5 @@ import { Form } from "react-bootstrap";
 
 export const StyledForm = styled(Form)`
   width: 80%;
-  margin: auto;
+  margin: 2rem auto;
 `;

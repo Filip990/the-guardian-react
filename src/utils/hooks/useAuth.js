@@ -40,6 +40,10 @@ function useProvideAuth() {
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user);
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify(response.user.refreshToken)
+        );
         return response.user;
       });
   };
@@ -50,6 +54,10 @@ function useProvideAuth() {
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user);
+        localStorage.setItem(
+          "currentUser",
+          JSON.stringify(response.user.refreshToken)
+        );
         return response.user;
       });
   };
@@ -59,6 +67,7 @@ function useProvideAuth() {
       .auth()
       .signOut()
       .then(() => {
+        localStorage.removeItem("currentUser");
         setUser(false);
       });
   };

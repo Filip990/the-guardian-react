@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 import { changeSection } from "../../pages/SectionDetails/store/Actions";
 import { logOut } from "../../pages/LogIn/store/Actions";

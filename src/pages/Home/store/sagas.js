@@ -4,7 +4,7 @@ import {
   NEWS_FEED_REQUEST_SUCCESS,
   NEWS_FEED_REQUEST_FAILURE,
 } from "./Actions";
-import { API_KEY } from "../../../constants";
+import { API_KEY } from "../../../utils/constants";
 
 const sections = ["search", "lifeandstyle", "business", "world", "culture"];
 

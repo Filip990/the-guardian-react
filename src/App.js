@@ -16,10 +16,10 @@ import Article from "./pages/Article/Article";
 import Header from "./components/Header/Header";
 import SectionDetails from "./pages/SectionDetails/SectionDetails";
 import Search from "./pages/Search/Search";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SignUp from "./pages/SignUp/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
-import { ProvideAuth } from "./hooks/useAuth";
+import { ProvideAuth } from "./utils/hooks/useAuth";
 
 function App() {
   const sagaMiddleware = createSagaMiddleware();

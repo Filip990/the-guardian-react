@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import UserForm from "../../components/UserForm/UserForm";
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../utils/hooks/useAuth";
 import { logInSuccess, logInStart } from "./store/Actions";
 
 const LogIn = ({ history }) => {

@@ -4,7 +4,7 @@ import {
   SEARCH_NEWS_SUCCESS,
   SEARCH_NEWS_FAILURE,
 } from "./Actions";
-import { API_KEY } from "../../../constants";
+import { API_KEY } from "../../../utils/constants";
 
 export function* watchSearchSaga() {
   yield takeLatest(SEARCH_NEWS_REQUEST, searchSaga);

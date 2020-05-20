@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
-import { API_KEY } from "../../constants";
+import { API_KEY } from "../../utils/constants";
 
 const Article = (props) => {
   const { pathname } = useLocation();
