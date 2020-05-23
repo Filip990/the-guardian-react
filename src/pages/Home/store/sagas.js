@@ -1,4 +1,5 @@
 import { takeLatest, call, put } from "redux-saga/effects";
+import axios from "axios";
 import {
   NEWS_FEED_REQUEST_START,
   NEWS_FEED_REQUEST_SUCCESS,
@@ -13,11 +14,10 @@ export function* watchFeedSaga() {
 }
 
 const fetchNewsBySections = async (section) => {
-  const res = await fetch(
+  const res = await axios.get(
     `https://content.guardianapis.com/${section}?show-fields=headline,trailText,body,thumbnail&page-size=6&api-key=${API_KEY}`
   );
-  const json = await res.json();
-  return json.response;
+  return res.data.response;
 };
 
 const getSections = () => {

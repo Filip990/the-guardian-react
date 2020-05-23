@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
+
 import { Container, Row, Col, Image } from "react-bootstrap";
 
 import { API_KEY } from "../../utils/constants";
@@ -11,10 +13,10 @@ const Article = (props) => {
   useEffect(() => {
     const fetchArticleDetails = async () => {
       try {
-        const res = await fetch(
+        const res = await axios.get(
           `https://content.guardianapis.com/${pathname}?show-fields=trailText,hasStoryPackage,thumbnail,body&api-key=${API_KEY}`
         );
-        const { response } = await res.json();
+        const { response } = res.data;
         setArticleDetails(response.content);
       } catch (error) {
         return error;
