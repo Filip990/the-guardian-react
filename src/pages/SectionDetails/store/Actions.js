@@ -24,7 +24,8 @@ export const changePageIndex = (index) => ({
   index,
 });
 
-export const changeSection = () => ({
+export const changeSection = (section) => ({
   // dispatched from header component
   type: SECTION_CHANGED,
+  section,
 });
