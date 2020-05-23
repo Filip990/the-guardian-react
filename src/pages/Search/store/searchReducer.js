@@ -4,8 +4,8 @@ import {
   SEARCH_NEWS_FAILURE,
   INPUT_VALUE_CHANGE,
   TERM_CHANGE,
-} from "./Actions";
-import { CHANGE_ORDER } from "../../../store/Actions";
+} from "./actions";
+import { CHANGE_ORDER } from "../../../store/actions";
 import produce from "immer";
 
 const initialState = {

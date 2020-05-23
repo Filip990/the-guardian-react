@@ -1,14 +1,23 @@
 import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+
+import { Alert } from "react-bootstrap";
 
 import { useAuth } from "../../utils/hooks/useAuth";
 import UserForm from "../../components/UserForm/UserForm";
-import { Link } from "react-router-dom";
+
+import { signUpStart, signUpFailure } from "./store/actions";
+import { HOME } from "../../routes/constants";
 
 const SignUp = ({ history }) => {
   const auth = useAuth();
+  const dispatch = useDispatch();
+  const { signUpError, isLoading } = useSelector((state) => state.user);
 
   const handleSignup = useCallback(
     async (event) => {
+      dispatch(signUpStart());
       event.preventDefault();
       const form = event.target;
       const email = form.elements.email.value;
@@ -17,19 +26,24 @@ const SignUp = ({ history }) => {
         await auth.signup(email, password);
         history.push("/");
       } catch (error) {
-        alert(error);
+        dispatch(signUpFailure(error.message));
       }
     },
-    [auth, history]
+    [dispatch, auth, history]
   );
+
+  if (auth.user) {
+    return <Redirect to={HOME} />;
+  }
 
   return (
     <>
       <h2>Sign Up</h2>
-      <UserForm onSubmit={handleSignup} />
+      <UserForm onSubmit={handleSignup} isLoading={isLoading} />
       <p>
         <Link to={"/login"}>Back to Log In</Link>
       </p>
+      {signUpError && <Alert variant="danger">{signUpError}</Alert>}
     </>
   );
 };

@@ -2,7 +2,7 @@ import {
   NEWS_FEED_REQUEST_START,
   NEWS_FEED_REQUEST_SUCCESS,
   NEWS_FEED_REQUEST_FAILURE,
-} from "./Actions";
+} from "./actions";
 import produce from "immer";
 
 const initialState = {

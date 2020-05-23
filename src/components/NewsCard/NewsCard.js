@@ -3,13 +3,13 @@ import { Card, Button } from "react-bootstrap";
 
 import { CardItem, CardImage, CardLink } from "./NewsCard.styled";
 
-const NewsCard = (props) => (
+const NewsCard = ({ article }) => (
   <CardItem>
-    <CardImage variant="top" src={props?.article.fields?.thumbnail} />
+    <CardImage variant="top" src={article.fields?.thumbnail} />
     <Card.Body>
-      <Card.Title>{props.article.webTitle}</Card.Title>
+      <Card.Title>{article.webTitle}</Card.Title>
       <Button variant="primary">
-        <CardLink to={`/${props.article.id}`}>Read more</CardLink>
+        <CardLink to={`/${article.id}`}>Read more</CardLink>
       </Button>
     </Card.Body>
   </CardItem>

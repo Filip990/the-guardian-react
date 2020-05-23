@@ -8,22 +8,26 @@ import createSagaMiddleware from "redux-saga";
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
 import searchReducer from "./pages/Search/store/searchReducer";
 import sectionReducer from "./pages/SectionDetails/store/sectionReducer";
-import userReducer from "./pages/LogIn/store/userReducer";
+import userReducer from "./store/userReducer";
+
 import sagas from "./store/sagas";
+
 import "./App.css";
 
 // Components
 import Home from "./pages/Home/Home";
 import Article from "./pages/Article/Article";
-import Header from "./components/Header/Header";
 import SectionDetails from "./pages/SectionDetails/SectionDetails";
 import Search from "./pages/Search/Search";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./routes/PrivateRoute";
 import SignUp from "./pages/SignUp/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
 
 //utils
 import { ProvideAuth } from "./utils/hooks/useAuth";
+
+// route constants
+import * as routes from "./routes/constants";
 
 function App() {
   const sagaMiddleware = createSagaMiddleware();
@@ -44,14 +48,13 @@ function App() {
       <Provider store={store}>
         <Router>
           <ProvideAuth>
-            <Header />
             <Switch>
-              <Route path="/login" component={LogIn} />
-              <Route path="/signup" component={SignUp} />
-              <PrivateRoute exact path="/" component={Home} />
-              <PrivateRoute path="/search" component={Search} />
+              <Route path={routes.LOGIN} component={LogIn} />
+              <Route path={routes.SIGNUP} component={SignUp} />
+              <PrivateRoute exact path={routes.HOME} component={Home} />
+              <PrivateRoute path={routes.SEARCH} component={Search} />
               <PrivateRoute
-                path="/section/:section"
+                path={`${routes.SECTION}:section`}
                 component={SectionDetails}
               />
               <PrivateRoute path="/:id" component={Article} />

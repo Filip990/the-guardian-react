@@ -1,11 +1,10 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
-import { StyledCarousel, Caption } from "./CarouselComponent.styled";
 import { Link } from "react-router-dom";
 
-const CarouselComponent = (props) => {
-  const { carouselItems } = props;
+import { StyledCarousel, Caption } from "./CarouselComponent.styled";
 
+const CarouselComponent = ({ carouselItems }) => {
   return (
     <StyledCarousel>
       {carouselItems.map((item) => (

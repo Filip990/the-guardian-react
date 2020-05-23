@@ -12,9 +12,8 @@ const Section = (props) => {
       <SectionHeader
         isLinkVisible={true}
         link={`section/${details.section?.id}`}
-      >
-        {details.section?.webTitle}
-      </SectionHeader>
+        title={details.section?.webTitle}
+      />
       <Row>
         {details.results &&
           details.results.map((article) => (
