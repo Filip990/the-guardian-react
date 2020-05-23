@@ -3,7 +3,7 @@ import {
   SEARCH_NEWS_REQUEST,
   SEARCH_NEWS_SUCCESS,
   SEARCH_NEWS_FAILURE,
-} from "./Actions";
+} from "./actions";
 import { API_KEY } from "../../../utils/constants";
 
 export function* watchSearchSaga() {

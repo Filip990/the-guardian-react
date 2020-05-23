@@ -25,6 +25,9 @@ import LogIn from "./pages/LogIn/LogIn";
 //utils
 import { ProvideAuth } from "./utils/hooks/useAuth";
 
+// routes constants
+import * as routes from "./routes/constants";
+
 function App() {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
@@ -45,12 +48,12 @@ function App() {
         <Router>
           <ProvideAuth>
             <Switch>
-              <Route path="/login" component={LogIn} />
-              <Route path="/signup" component={SignUp} />
-              <PrivateRoute exact path="/" component={Home} />
-              <PrivateRoute path="/search" component={Search} />
+              <Route path={routes.LOGIN} component={LogIn} />
+              <Route path={routes.SIGNUP} component={SignUp} />
+              <PrivateRoute exact path={routes.HOME} component={Home} />
+              <PrivateRoute path={routes.SEARCH} component={Search} />
               <PrivateRoute
-                path="/section/:section"
+                path={`${routes.SECTION}:section`}
                 component={SectionDetails}
               />
               <PrivateRoute path="/:id" component={Article} />

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { Alert } from "react-bootstrap";
 
@@ -30,6 +30,10 @@ const SignUp = ({ history }) => {
     },
     [dispatch, auth, history]
   );
+
+  if (auth.user) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

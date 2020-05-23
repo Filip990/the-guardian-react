@@ -13,8 +13,8 @@ import {
   searchNewsRequest,
   updateInputValue,
   termChange,
-} from "./store/Actions";
-import { changeOrderBy } from "../../store/Actions";
+} from "./store/actions";
+import { changeOrderBy } from "../../store/actions";
 
 const Search = () => {
   const dispatch = useDispatch();

@@ -4,7 +4,7 @@ import {
   LOG_IN_SUCCESS,
   LOG_IN_FAILURE,
   LOG_OUT,
-} from "../pages/LogIn/store/Actions";
+} from "../pages/LogIn/store/actions";
 import { SIGN_UP_FAILURE, SIGN_UP_START } from "../pages/SignUp/store/actions";
 
 const initialState = {

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
-import { newsFeedRequest } from "./store/Actions";
+import { newsFeedRequest } from "./store/actions";
 
 import CarouselComponent from "../../components/Carousel/CarouselComponent";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";

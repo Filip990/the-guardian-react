@@ -10,8 +10,8 @@ import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 
 // Actions
-import { getSectionNewsRequest, changePageIndex } from "./store/Actions";
-import { changeOrderBy } from "../../store/Actions";
+import { getSectionNewsRequest, changePageIndex } from "./store/actions";
+import { changeOrderBy } from "../../store/actions";
 
 // save the previous value of section, index and order properties...
 //.. bcs we are manipulating the sectionNews array on change of either of those properties

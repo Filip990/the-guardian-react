@@ -10,19 +10,16 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const token = localStorage.getItem("currentUser");
 
   return (
-    <Route
-      {...rest}
-      render={() =>
-        !!auth.user || token ? (
-          <>
-            <Header />
-            <RouteComponent />
-          </>
-        ) : (
-          <Redirect to={"/login"} />
-        )
-      }
-    />
+    <Route {...rest}>
+      {!!auth.user || token ? (
+        <>
+          <Header />
+          <RouteComponent />
+        </>
+      ) : (
+        <Redirect to={"/login"} />
+      )}
+    </Route>
   );
 };
 

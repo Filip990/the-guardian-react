@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "react-bootstrap";
 
 import UserForm from "../../components/UserForm/UserForm";
 
 import { useAuth } from "../../utils/hooks/useAuth";
-import { logInSuccess, logInStart, logInFailure } from "./store/Actions";
+import { logInSuccess, logInStart, logInFailure } from "./store/actions";
 
 const LogIn = ({ history }) => {
   const auth = useAuth();
@@ -30,6 +30,10 @@ const LogIn = ({ history }) => {
     },
     [auth, history, dispatch]
   );
+
+  if (auth.user) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <>

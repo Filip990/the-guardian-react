@@ -4,8 +4,8 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
 import { useAuth } from "../../utils/hooks/useAuth";
 
-import { changeSection } from "../../pages/SectionDetails/store/Actions";
-import { logOut } from "../../pages/LogIn/store/Actions";
+import { changeSection } from "../../pages/SectionDetails/store/actions";
+import { logOut } from "../../pages/LogIn/store/actions";
 
 const Header = () => {
   const [expanded, setExpanded] = useState(false);

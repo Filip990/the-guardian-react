@@ -3,7 +3,7 @@ import {
   GET_SECTION_NEWS_REQUEST,
   GET_SECTION_NEWS_SUCCESS,
   GET_SECTION_NEWS_FAILURE,
-} from "./Actions";
+} from "./actions";
 import { API_KEY } from "../../../utils/constants";
 
 export function* watchSectionSaga() {

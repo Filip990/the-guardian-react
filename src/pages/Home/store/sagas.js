@@ -3,7 +3,7 @@ import {
   NEWS_FEED_REQUEST_START,
   NEWS_FEED_REQUEST_SUCCESS,
   NEWS_FEED_REQUEST_FAILURE,
-} from "./Actions";
+} from "./actions";
 import { API_KEY } from "../../../utils/constants";
 
 const sections = ["search", "lifeandstyle", "business", "world", "culture"];
