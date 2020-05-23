@@ -1,16 +1,17 @@
 import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "react-bootstrap";
 
 import UserForm from "../../components/UserForm/UserForm";
 
 import { useAuth } from "../../utils/hooks/useAuth";
-import { logInSuccess, logInStart } from "./store/Actions";
+import { logInSuccess, logInStart, logInFailure } from "./store/Actions";
 
 const LogIn = ({ history }) => {
   const auth = useAuth();
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.user);
+  const { isLoading, logInError } = useSelector((state) => state.user);
 
   const handleLogIn = useCallback(
     async (event) => {
@@ -24,7 +25,7 @@ const LogIn = ({ history }) => {
         dispatch(logInSuccess(auth.user));
         history.push("/");
       } catch (error) {
-        alert(error);
+        dispatch(logInFailure(error.message));
       }
     },
     [auth, history, dispatch]
@@ -37,6 +38,7 @@ const LogIn = ({ history }) => {
       <p>
         Don't have an account? <Link to={"/signup"}>Create one</Link>
       </p>
+      {logInError && <Alert variant="danger">{logInError}</Alert>}
     </>
   );
 };

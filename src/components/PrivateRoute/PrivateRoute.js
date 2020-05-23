@@ -3,6 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 
 import { useAuth } from "../../utils/hooks/useAuth";
 
+import Header from "../../components/Header/Header";
+
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const auth = useAuth();
   const token = localStorage.getItem("currentUser");
@@ -10,9 +12,12 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(routeProps) =>
+      render={() =>
         !!auth.user || token ? (
-          <RouteComponent {...routeProps} />
+          <>
+            <Header />
+            <RouteComponent />
+          </>
         ) : (
           <Redirect to={"/login"} />
         )

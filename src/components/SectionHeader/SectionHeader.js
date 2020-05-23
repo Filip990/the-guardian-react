@@ -7,25 +7,23 @@ import {
   StyledDropDown,
 } from "./SectionHeader.styled";
 
-const SectionHeader = (props) => {
-  const { isLinkVisible } = props;
-
+const SectionHeader = ({ title, link, isLinkVisible, orderBy, onChange }) => {
   return (
     <StyledHeader>
-      {props.children}
-      {isLinkVisible && <HeaderLink to={props.link}>see all</HeaderLink>}
+      {title}
+      {isLinkVisible && <HeaderLink to={link}>see all</HeaderLink>}
       {!isLinkVisible && (
         <StyledDropDown
           id="dropdown-item-button"
           variant="primary"
-          title={`Sort by: ${props.orderBy}`}
-          onSelect={props.onChange}
+          title={`Sort by: ${orderBy}`}
+          onSelect={onChange}
         >
           <Dropdown.Item as="button" eventKey="newest">
             Newest
           </Dropdown.Item>
           <Dropdown.Item as="button" eventKey="relevance">
-            Most Relevant
+            Relevance
           </Dropdown.Item>
           <Dropdown.Item as="button" eventKey="oldest">
             Oldest

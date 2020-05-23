@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { HeaderLink } from "./Header.styled";
 import { useAuth } from "../../utils/hooks/useAuth";
@@ -11,28 +11,23 @@ const Header = () => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
   const auth = useAuth();
-  const { user } = useSelector((state) => state.user);
-
-  // hack, need to figure out the way to store this in the state...
-  //... bcs the {user} from state is null after refresh
-  const token = localStorage.getItem("currentUser");
 
   const handleSectionClick = () => {
     dispatch(changeSection());
-    if (expanded === true) toggleNavbar();
+    if (expanded === true) handleNavbarToggle();
   };
 
   const handleLogout = () => {
     auth.signout();
     dispatch(logOut());
-    if (expanded === true) toggleNavbar();
+    if (expanded === true) handleNavbarToggle();
   };
 
-  const toggleNavbar = () => {
-    setExpanded((prevExpanded) => (prevExpanded = !prevExpanded));
+  const handleNavbarToggle = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
   };
 
-  return user || token ? (
+  return (
     <Navbar
       expanded={expanded}
       bg="dark"
@@ -41,7 +36,10 @@ const Header = () => {
       sticky="top"
     >
       <Navbar.Brand>TheGuardian</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleNavbar} />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        onClick={handleNavbarToggle}
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto" onClick={handleSectionClick}>
           <HeaderLink exact to="/">
@@ -57,7 +55,7 @@ const Header = () => {
         <Button onClick={handleLogout}>Sign Out</Button>
       </Navbar.Collapse>
     </Navbar>
-  ) : null;
+  );
 };
 
 export default Header;

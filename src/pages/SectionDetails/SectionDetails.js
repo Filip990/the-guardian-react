@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 
+//Components
 import NewsCard from "../../components/NewsCard/NewsCard";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
 import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import LoadMoreButton from "../../components/LoadMore/LoadMoreButton";
 
+// Actions
 import { getSectionNewsRequest, changePageIndex } from "./store/Actions";
 import { changeOrderBy } from "../../store/Actions";
 
@@ -54,10 +56,8 @@ const SectionDetails = () => {
         onChange={changeSort}
         orderBy={orderBy}
         isLinkVisible={false}
-      >
-        {/* url param for "Latest" is actually "Search", and we're getting section name from url param */}
-        {section === "search" ? "Latest" : section}
-      </SectionHeader>
+        title={section === "search" ? "Latest" : section}
+      />
       <Row>
         {sectionNews &&
           sectionNews.map((item) => (

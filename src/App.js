@@ -8,14 +8,14 @@ import createSagaMiddleware from "redux-saga";
 import newsFeedReducer from "./pages/Home/store/newsFeedReducer";
 import searchReducer from "./pages/Search/store/searchReducer";
 import sectionReducer from "./pages/SectionDetails/store/sectionReducer";
-import userReducer from "./pages/LogIn/store/userReducer";
+import userReducer from "./store/userReducer";
 import sagas from "./store/sagas";
+
 import "./App.css";
 
 // Components
 import Home from "./pages/Home/Home";
 import Article from "./pages/Article/Article";
-import Header from "./components/Header/Header";
 import SectionDetails from "./pages/SectionDetails/SectionDetails";
 import Search from "./pages/Search/Search";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -44,7 +44,6 @@ function App() {
       <Provider store={store}>
         <Router>
           <ProvideAuth>
-            <Header />
             <Switch>
               <Route path="/login" component={LogIn} />
               <Route path="/signup" component={SignUp} />
