@@ -8,6 +8,8 @@ import UserForm from "../../components/UserForm/UserForm";
 import { useAuth } from "../../utils/hooks/useAuth";
 import { logInSuccess, logInStart, logInFailure } from "./store/actions";
 
+import { HOME } from "../../routes/constants";
+
 const LogIn = ({ history }) => {
   const auth = useAuth();
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const LogIn = ({ history }) => {
   );
 
   if (auth.user) {
-    return <Redirect to="/" />;
+    return <Redirect to={HOME} />;
   }
 
   return (

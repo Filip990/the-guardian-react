@@ -8,6 +8,7 @@ import { useAuth } from "../../utils/hooks/useAuth";
 import UserForm from "../../components/UserForm/UserForm";
 
 import { signUpStart, signUpFailure } from "./store/actions";
+import { HOME } from "../../routes/constants";
 
 const SignUp = ({ history }) => {
   const auth = useAuth();
@@ -32,7 +33,7 @@ const SignUp = ({ history }) => {
   );
 
   if (auth.user) {
-    return <Redirect to="/" />;
+    return <Redirect to={HOME} />;
   }
 
   return (

@@ -25,7 +25,7 @@ import LogIn from "./pages/LogIn/LogIn";
 //utils
 import { ProvideAuth } from "./utils/hooks/useAuth";
 
-// routes constants
+// route constants
 import * as routes from "./routes/constants";
 
 function App() {

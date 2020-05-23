@@ -56,7 +56,7 @@ const Search = () => {
     // if statement prevents API call if a same orderBy is clicked multiple times
     if (event !== orderBy) {
       dispatch(changeOrderBy(event));
-      dispatch(searchNewsRequest(inputValue, pageIndex, event));
+      dispatch(searchNewsRequest(searchTerm, pageIndex, event));
     }
   };
 
@@ -86,9 +86,8 @@ const Search = () => {
             isLinkVisible={false}
             orderBy={orderBy}
             onChange={changeSort}
-          >
-            Showing results for {searchTerm}
-          </SectionHeader>
+            title={`Showing results for ${searchTerm}`}
+          ></SectionHeader>
         )}
         <Row>
           {results &&
